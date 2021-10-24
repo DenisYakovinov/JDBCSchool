@@ -1,0 +1,17 @@
+version: "3.9"
+services:
+  shool_db:
+    container_name: postgre_db
+    image: postgres:13-alpine
+    environment:
+      POSTGRES_USER: denis
+      POSTGRES_PASSWORD: Postgres12
+      POSTGRES_DB: schoolbase
+      PGDATA: /var/lib/postgresql/data/pgdata
+      DB_HOST: 0.0.0.0
+    volumes:
+      - ./postgres_data:/var/lib/postgresql/data/
+    restart: always
+    ports:
+      - 5432:5432
+
