@@ -2,13 +2,15 @@ package img.imaginary;
 
 import java.util.Set;
 
+import img.imaginary.presentation.MenuBuilder;
+import img.imaginary.presentation.MenuContainer;
 import img.imaginary.dao.DaoFactoriesType;
 import img.imaginary.dao.DaoFactory;
 import img.imaginary.dao.DefaultStatemetSetter;
 import img.imaginary.dao.StudentDao;
 import img.imaginary.dao.postgres.ConnectionPool;
-import img.imaginary.input.SQLExecutorUtil;
-import img.imaginary.presentation.UserCommand;
+import img.imaginary.input.SQLExecutor;
+import img.imaginary.presentation.SchoolMenuFactory;
 import img.imaginary.service.ServiceFactory;
 import img.imaginary.service.ServiceFactoryDefault;
 import img.imaginary.service.entity.Course;
@@ -24,7 +26,8 @@ public class SchoolStarter {
 
     public static void main(String[] args) {
         ConnectionPool connectionPool = new ConnectionPool("dao.properties");
-        SQLExecutorUtil.execute("creationTables.sql", connectionPool);
+        SQLExecutor executor = new SQLExecutor(connectionPool);
+        executor.execute("creationTables.sql");
         DaoFactory daoFactory = DaoFactoriesType.POSTGRES.get(connectionPool, new DefaultStatemetSetter());
         Set<Student> students = new StudentSupplier().supplyData();
         daoFactory.getStudentDao().addAllStudents(students);
@@ -34,9 +37,10 @@ public class SchoolStarter {
         StudentDao studentDao = daoFactory.getStudentDao();
         daoFactory.getGroupDao().addAllGroups(groups, studentDao);
         daoFactory.getCourseDao().addAllCourses(courses);
-        studentDao.addBatchStudentsToCourse(studentsToCourses);   
+        studentDao.addBatchStudentsToCourse(studentsToCourses);
         ServiceFactory serviceFactory = new ServiceFactoryDefault(daoFactory);
-        UserCommand userCommand = new UserCommand(serviceFactory);
-        userCommand.executeInterface();
+        SchoolMenuFactory menuFactory = new SchoolMenuFactory(serviceFactory,
+                new MenuBuilder(new MenuContainer("task 7 jdbc")));
+        menuFactory.buildSchoolMenu().execute();
     }
 }

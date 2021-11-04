@@ -12,7 +12,7 @@ import img.imaginary.dao.DaoFactoriesType;
 import img.imaginary.dao.DaoFactory;
 import img.imaginary.dao.DefaultStatemetSetter;
 import img.imaginary.dao.postgres.ConnectionPool;
-import img.imaginary.input.SQLExecutorUtil;
+import img.imaginary.input.SQLExecutor;
 import img.imaginary.service.entity.Course;
 
 class CourseDaoPostgresTest {
@@ -23,8 +23,9 @@ class CourseDaoPostgresTest {
     static void createDataBase() {
         ConnectionPool connectionPool = new ConnectionPool("daoH2.properties");
         DaoFactory daoFactory = DaoFactoriesType.POSTGRES.get(connectionPool, new DefaultStatemetSetter());
-        SQLExecutorUtil.execute("creationTables.sql", connectionPool);
-        SQLExecutorUtil.execute("insertTestStudents.sql", connectionPool);
+        SQLExecutor executor = new SQLExecutor(connectionPool);
+        executor.execute("creationTables.sql");
+        executor.execute("insertTestStudents.sql");
         courseDao = daoFactory.getCourseDao();
     };
 
@@ -49,4 +50,3 @@ class CourseDaoPostgresTest {
         assertEquals(expected, actual);
     }
 }
-
