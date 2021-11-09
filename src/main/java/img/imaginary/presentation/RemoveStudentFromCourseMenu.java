@@ -2,7 +2,7 @@ package img.imaginary.presentation;
 
 import img.imaginary.service.StudentService;
 
-public class RemoveStudentFromCourseMenu extends MenuItem implements Menu {
+public class RemoveStudentFromCourseMenu extends MenuReader implements Menu {
 
     private String descrition = "Remove a student from one of his or her courses";
     private final StudentService studentService;

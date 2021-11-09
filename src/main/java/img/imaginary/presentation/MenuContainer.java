@@ -3,7 +3,7 @@ package img.imaginary.presentation;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuContainer extends MenuItem implements Menu {
+public class MenuContainer extends MenuReader implements Menu {
 
     private final String description;
     private final List<Menu> components = new ArrayList<>();
@@ -69,3 +69,4 @@ public class MenuContainer extends MenuItem implements Menu {
         }
     }
 }
+

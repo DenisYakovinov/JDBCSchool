@@ -6,7 +6,7 @@ import img.imaginary.service.ServiceFactory;
 import img.imaginary.service.StudentService;
 
 public class SchoolMenuFactory {
-   
+    
     private final ServiceFactory serviceFactory;        
     private final MenuBuilder builder;
     
@@ -19,16 +19,16 @@ public class SchoolMenuFactory {
         StudentService studentService = serviceFactory.getStudentService();
         CourseService courseService = serviceFactory.getCourseService();
         GroupService groupService = serviceFactory.getGroupService();
-        return builder.subMenu(new MenuContainer("students actions: "))
+        return builder.subMenu("students actions: ")
                       .addItem(new AddStudentMenu(studentService))
                       .addItem(new DeleteStudentMenu(studentService)) 
                       .endMenu()
-                      .subMenu(new MenuContainer("course related actions: "))
+                      .subMenu("course related actions: ")
                       .addItem(new StudentsRelatedCourseMenu(studentService, courseService))
                       .addItem(new RemoveStudentFromCourseMenu(studentService))
                       .addItem(new AddStudentToCourseMenu(studentService, courseService))
                       .endMenu()
-                      .subMenu(new MenuContainer("group related actions: "))
+                      .subMenu("group related actions: ")
                       .addItem(new FindGroupsByStudentMenu(groupService))
                       .endMenu()
                       .build();       

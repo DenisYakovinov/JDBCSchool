@@ -1,4 +1,4 @@
-package edu.foxminded;
+package img.imaginary;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.HashSet;

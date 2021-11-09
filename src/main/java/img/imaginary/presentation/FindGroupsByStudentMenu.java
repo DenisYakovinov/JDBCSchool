@@ -2,7 +2,7 @@ package img.imaginary.presentation;
 
 import img.imaginary.service.GroupService;
 
-public class FindGroupsByStudentMenu extends MenuItem implements Menu {
+public class FindGroupsByStudentMenu extends MenuReader implements Menu {
 
     private String descrition = "Find all groups with less or equals student count";
     private GroupService groupService;

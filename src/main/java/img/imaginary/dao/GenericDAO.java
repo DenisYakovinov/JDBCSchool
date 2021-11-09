@@ -45,7 +45,6 @@ public abstract class GenericDAO<T> {
     protected List<Integer> addAll(Set<T> entities, String query) {
         try (Connection connection = connectionPool.getConnection();
                  PreparedStatement statement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
-            connection.setAutoCommit(false);
             for (T entity : entities) {
                 mapFromEntity(statement, entity);
                 statement.addBatch();
@@ -56,7 +55,6 @@ public abstract class GenericDAO<T> {
             while(resultKeys.next()) {
                 keys.add(resultKeys.getInt(1));
             }
-            connection.commit();
             return keys;
         } catch (Exception e) {
             throw new DaoException("entities have't been added", e);

@@ -3,7 +3,7 @@ package img.imaginary.presentation;
 import img.imaginary.service.StudentService;
 import img.imaginary.service.entity.Student;
 
-public class AddStudentMenu extends MenuItem implements Menu {
+public class AddStudentMenu extends MenuReader implements Menu {
 
     private String descrition = "Add student";
     private StudentService studentService;

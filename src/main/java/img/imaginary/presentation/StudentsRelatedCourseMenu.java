@@ -3,7 +3,7 @@ package img.imaginary.presentation;
 import img.imaginary.service.CourseService;
 import img.imaginary.service.StudentService;
 
-public class StudentsRelatedCourseMenu extends MenuItem implements Menu {
+public class StudentsRelatedCourseMenu extends MenuReader implements Menu {
 
     private String descrition = "Find all students related to a course";
     private final StudentService studentService;

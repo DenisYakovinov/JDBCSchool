@@ -3,7 +3,6 @@ package img.imaginary;
 import java.util.Set;
 
 import img.imaginary.presentation.MenuBuilder;
-import img.imaginary.presentation.MenuContainer;
 import img.imaginary.dao.DaoFactoriesType;
 import img.imaginary.dao.DaoFactory;
 import img.imaginary.dao.DefaultStatemetSetter;
@@ -40,7 +39,7 @@ public class SchoolStarter {
         studentDao.addBatchStudentsToCourse(studentsToCourses);
         ServiceFactory serviceFactory = new ServiceFactoryDefault(daoFactory);
         SchoolMenuFactory menuFactory = new SchoolMenuFactory(serviceFactory,
-                new MenuBuilder(new MenuContainer("task 7 jdbc")));
+                new MenuBuilder("task 7 jdbc"));
         menuFactory.buildSchoolMenu().execute();
     }
 }

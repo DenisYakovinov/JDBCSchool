@@ -3,7 +3,7 @@ package img.imaginary.presentation;
 import java.io.PrintStream;
 import java.util.Scanner;
 
-public class MenuItem {
+public class MenuReader {
 
     protected PrintStream out = System.out;
     protected Scanner scanner = new Scanner(System.in);
